@@ -1,6 +1,6 @@
 package com.todo.app.backend.config;
 
-import com.todo.app.backend.model.User;
+import com.todo.app.backend.model.UserDetail;
 import com.todo.app.backend.model.enums.UserRole;
 import com.todo.app.backend.repository.UserRepository;
 import com.todo.app.backend.security.CustomUserDetailsService;
@@ -53,6 +53,7 @@ public class SecurityConfig {
                                 "/webjars/**"
                         ).permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(
@@ -76,7 +77,7 @@ public class SecurityConfig {
     public CommandLineRunner initAdmin(UserRepository userRepository, PasswordEncoder encoder) {
         return args -> {
             if (userRepository.findByUsername(ADMIN).isEmpty()) {
-                User admin = new User();
+                UserDetail admin = new UserDetail();
                 admin.addRole(UserRole.ADMIN);
                 admin.setUsername(ADMIN);
                 admin.setEmail(ADMIN);
