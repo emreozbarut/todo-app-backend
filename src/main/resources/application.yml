@@ -1,3 +1,5 @@
 spring:
   application:
     name: todo-app-backend
+  profiles:
+    active: dev

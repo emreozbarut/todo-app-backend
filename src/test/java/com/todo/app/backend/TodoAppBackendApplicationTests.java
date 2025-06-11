@@ -1,4 +1,4 @@
-package com.todo_app_backend;
+package com.todo.app.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
