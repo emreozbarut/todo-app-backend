@@ -1,6 +1,6 @@
 package com.todo.app.backend.security;
 
-import com.todo.app.backend.model.User;
+import com.todo.app.backend.model.UserDetail;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -29,7 +29,7 @@ public class JwtTokenProvider {
     }
 
     public String generateToken(Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
+        UserDetail userDetail = (UserDetail) authentication.getPrincipal();
         List<String> roles = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .toList();
@@ -38,7 +38,7 @@ public class JwtTokenProvider {
         Date expiryDate = new Date(now.getTime() + jwtExpiration);
 
         return Jwts.builder()
-                .setSubject(user.getEmail())
+                .setSubject(userDetail.getEmail())
                 .claim("roles", roles)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)

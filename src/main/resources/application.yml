@@ -3,3 +3,7 @@ spring:
     name: todo-app-backend
   profiles:
     active: dev
+  data:
+    couchbase:
+      auditing:
+        enabled: true
