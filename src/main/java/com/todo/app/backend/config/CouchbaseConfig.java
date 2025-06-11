@@ -1,11 +1,18 @@
 package com.todo.app.backend.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
+import org.springframework.data.couchbase.repository.auditing.EnableCouchbaseAuditing;
 import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 @Configuration
+@EnableCouchbaseAuditing(dateTimeProviderRef = "dateTimeProvider")
 @EnableCouchbaseRepositories(basePackages = "com.todo.app.backend.repository")
 public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
@@ -39,5 +46,10 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
     @Override
     public String getBucketName() {
         return bucketName;
+    }
+
+    @Bean
+    public DateTimeProvider dateTimeProvider() {
+        return () -> Optional.of(LocalDateTime.now());
     }
 }

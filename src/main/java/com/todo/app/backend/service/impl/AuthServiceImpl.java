@@ -3,7 +3,7 @@ package com.todo.app.backend.service.impl;
 import com.todo.app.backend.dto.LoginRequest;
 import com.todo.app.backend.dto.RegisterRequest;
 import com.todo.app.backend.exception.UserAlreadyExistsException;
-import com.todo.app.backend.model.User;
+import com.todo.app.backend.model.UserDetail;
 import com.todo.app.backend.model.enums.UserRole;
 import com.todo.app.backend.repository.UserRepository;
 import com.todo.app.backend.security.JwtTokenProvider;
@@ -48,16 +48,16 @@ public class AuthServiceImpl implements AuthService {
             throw new UserAlreadyExistsException("Email is already in use!");
         }
 
-        User user = new User();
-        user.setName(registerRequest.getName());
-        user.setSurname(registerRequest.getSurname());
-        user.setUsername(registerRequest.getUsername());
-        user.setEmail(registerRequest.getEmail());
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.addRole(UserRole.USER); // Default role.
+        UserDetail userDetail = new UserDetail();
+        userDetail.setName(registerRequest.getName());
+        userDetail.setSurname(registerRequest.getSurname());
+        userDetail.setUsername(registerRequest.getUsername());
+        userDetail.setEmail(registerRequest.getEmail());
+        userDetail.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        userDetail.addRole(UserRole.USER); // Default role.
 
-        userRepository.save(user);
+        UserDetail savedUserDetail = userRepository.save(userDetail);
 
-        return String.format("User registered successfully with ID: %s", user.getId());
+        return String.format("User registered successfully with ID: %s", savedUserDetail.getId());
     }
 }
