@@ -1,0 +1,15 @@
+app:
+  jwt:
+    secret: 3a7f8c1d9e2b4f6a8c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
+    expiration: 86400000 # 24 hours in milliseconds
+
+
+couchbase:
+  connection-string: couchbase://localhost
+  username: Administrator
+  password: password
+  bucket:
+    name: todo-app
+
+server:
+  port: 8084
