@@ -24,6 +24,7 @@ mvn test
 ```
 -Dspring.profiles.active=your-active-profile (dev-test-prod)
 -DJWT_SECRET=your-jwt-secret
+-DADMIN_PASSWORD=your-admin-password
 -DSPRING_COUCHBASE_CONNECTION_STRING=your-couchbase-connection-string
 -DSPRING_COUCHBASE_USERNAME=your-couchbase-username
 -DSPRING_COUCHBASE_PASSWORD=your-couchbase-password

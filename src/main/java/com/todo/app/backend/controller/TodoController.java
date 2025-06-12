@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/api/todo")
 @Tag(name = "Todo", description = "APIs for user todos")
 @SecurityRequirement(name = "bearerAuth")
-@PreAuthorize("hasRole('ROLE_USER')")
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 public class TodoController {
 
     private final TodoService todoService;
