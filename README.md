@@ -8,5 +8,5 @@ mvn clean package -DskipTests
 
 # Start the services
 ```bash
-docker-compose up --build
+docker-compose up --build -d
 ```

@@ -11,8 +11,7 @@ WORKDIR /app
 COPY target/todo-app-backend-*.jar app.jar
 
 # Expose ports
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 8084
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
