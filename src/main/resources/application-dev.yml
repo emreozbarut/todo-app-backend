@@ -3,7 +3,6 @@ app:
     secret: ${JWT_SECRET}
     expiration: 86400000 # 24 hours in milliseconds
 
-
 couchbase:
   connection-string: ${SPRING_COUCHBASE_CONNECTION_STRING}
   username: ${SPRING_COUCHBASE_USERNAME}
