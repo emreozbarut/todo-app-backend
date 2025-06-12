@@ -31,7 +31,7 @@ public class SecurityConfig {
 
     private static final String ADMIN = "admin";
 
-    @Value("${admin.password:admin123}")
+    @Value("${admin.password}")
     private String adminPassword;
 
     private final JwtTokenProvider jwtTokenProvider;
