@@ -1,7 +1,7 @@
 package com.todo.app.backend.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Document
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class BaseDocument {
 
     @Id
@@ -22,6 +25,7 @@ public abstract class BaseDocument {
     private String id;
 
     @Field
+    @Builder.Default
     private boolean isActive = true;
 
     @Field
