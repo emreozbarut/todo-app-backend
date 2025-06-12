@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   todo-app:
-    image: todo-app:latest
+    image: todo-app-backend:latest
     container_name: todo-app-backend
     build:
       context: .
