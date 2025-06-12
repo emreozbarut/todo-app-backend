@@ -1,6 +1,7 @@
 # todo-app-backend
 - You can reach swagger-ui with [SWAGGER-UI](http://localhost:8084/swagger-ui/index.html)
 - You can reach couchbase with [COUCHBASE-UI](http://localhost:8091)
+- You can pull docker image from [DOCKER-HUB](https://hub.docker.com/r/yasinozbarut/todo-app-backend)
 
 # Build your application
 ## Maven build
