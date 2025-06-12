@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: todo-app-backend
+  data:
+    couchbase:
+      auditing:
+        enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,prometheus"
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  health:
+    couchbase:
+      enabled: true
+      details:
+        enabled: true
+    groups:
+      health:
+        include: couchbase
+
+server:
+  port: 8084

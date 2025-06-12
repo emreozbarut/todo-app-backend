@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  todo-app:
+    image: todo-app:latest
+    container_name: todo-app-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+      - JWT_SECRET=${JWT_SECRET}
+      - SPRING_COUCHBASE_CONNECTION_STRING=couchbase://couchbase
+      - SPRING_COUCHBASE_USERNAME=${SPRING_COUCHBASE_USERNAME}
+      - SPRING_COUCHBASE_PASSWORD=${SPRING_COUCHBASE_PASSWORD}
+      - SPRING_COUCHBASE_BUCKET_NAME=todo-bucket
+      - SPRING_COUCHBASE_BUCKET_CREATE=true
+      - SPRING_COUCHBASE_BUCKET_RAM_QUOTA_MB=100
+      - SPRING_COUCHBASE_BUCKET_REPLICAS=0
+      - SPRING_COUCHBASE_BUCKET_FLUSH_ENABLED=true
+    depends_on:
+      - couchbase
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - todo-network
+    env_file:
+      - .env
+
+  couchbase:
+    image: couchbase/server:latest
+    container_name: todo-app-couchbase
+    ports:
+      - "8091-8094:8091-8094"
+      - "11210:11210"
+    environment:
+      - COUCHBASE_INDEX_MEMORY_QUOTA=256
+      - COUCHBASE_FTS_MEMORY_QUOTA=256
+      - COUCHBASE_EVENTING_MEMORY_QUOTA=256
+      - COUCHBASE_QUERY_MEMORY_QUOTA=256
+      - COUCHBASE_SERVICES=data,index,query,fts,eventing
+    volumes:
+      - couchbase_data:/opt/couchbase/var
+    networks:
+      - todo-network
+
+networks:
+  todo-network:
+    driver: bridge
+
+volumes:
+  couchbase_data:
