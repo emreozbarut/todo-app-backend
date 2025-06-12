@@ -22,6 +22,9 @@ public abstract class BaseDocument {
     private String id;
 
     @Field
+    private boolean isActive = true;
+
+    @Field
     @CreatedDate
     private LocalDateTime createdAt;
 
