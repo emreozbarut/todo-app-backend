@@ -1,9 +1,8 @@
 package com.todo.app.backend.model;
 
 import com.todo.app.backend.model.enums.UserRole;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.couchbase.core.mapping.Document;
 import org.springframework.data.couchbase.core.mapping.Field;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,7 +16,9 @@ import java.util.List;
 @Setter
 @Getter
 @Document
+@SuperBuilder
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDetail extends BaseDocument implements UserDetails {
 
     @Field
