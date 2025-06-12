@@ -42,9 +42,14 @@ services:
       - COUCHBASE_EVENTING_MEMORY_QUOTA=256
       - COUCHBASE_QUERY_MEMORY_QUOTA=256
       - COUCHBASE_SERVICES=data,index,query,fts,eventing
+    volumes:
+      - couchbase_data:/opt/couchbase/var
     networks:
       - todo-network
 
 networks:
   todo-network:
     driver: bridge
+
+volumes:
+  couchbase_data:
